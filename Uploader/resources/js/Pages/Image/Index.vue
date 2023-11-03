@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-    import Image from '@/Pages/Index/Components/Image.vue'
+    import Image from '@/Pages/Image/Components/Image.vue'
     defineProps({
         images: Array,
     })
