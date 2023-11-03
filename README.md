@@ -1,12 +1,13 @@
-# StrayKidsDiscordBot
+# QuoteBot
 
-Laravel Web App for image uploading and Discord bot for image posting.
+Laravel/Inertia/Vue web app for image and quote uploading and TypeScript Discord bot for image and quote posting.
 
-Totally unfinished project that is an attempt to be a bulk image uploader for a Discord bot to post to a Discord channel. Was targeted to be for StrayKids pictures but really it never got there. I didn't get far enough to give it any branding. Honestly I just barely got to finishing the image uploader.
+An attempt to be a bulk image uploader for a Discord bot to post to a Discord channel.
 
-I don't really care to finish it due to personal reasons. But could be a good thing to fork and finish.
+Forked from my own other project, "StrayKidsImageBot" but with significant improvements:
+ - TypeScript Discord Bot
+ - Docker Compose MySQL Database
+ - Images exposed via public endpoint
+ - And more!
 
-TODO:
- - Tie the Discord bot to the same data store as the image uploader (database and file storage)
- - Make it look better
- - Profit?
+To be filled out better once I know what I'm doing with this project.
