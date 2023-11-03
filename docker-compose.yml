@@ -1,0 +1,13 @@
+services:
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - /home/akitsul/Documents/mysql-discord-bot:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"

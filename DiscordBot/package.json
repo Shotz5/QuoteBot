@@ -1,0 +1,23 @@
+{
+  "name": "quotebot",
+  "version": "1.0.0",
+  "description": "A discord bot for posting images with grunge quotes!",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/typescript/bin/tsc",
+    "start": "npx ts-node dist/index.js",
+    "deploy": "npx ts-node dist/deploy-commands.js"
+  },
+  "author": "Shotz5",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0",
+    "mysql2": "^3.6.2",
+    "sequelize": "^6.33.0"
+  }
+}
