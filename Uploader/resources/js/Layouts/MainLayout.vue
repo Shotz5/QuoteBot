@@ -11,7 +11,7 @@
                     <Link :href="route('quote.index')" class="text-xl text-gray-50 dark:text-gray-50 font-bold text-center">Quotes</Link>
                 </div>
                 <div class="text-lg font-medium">
-                    <Link :href="route('image.index')">Add to Server</Link>
+                    <Link :href="route('image.index')">Add Discord Bot to Server</Link>
                 </div>
             </nav>
         </div>

@@ -5,7 +5,7 @@
         </template>
         <a :href="route('image.show', { image: image.id })">
             <div class="text-center break-words">
-                <img :src="'/storage/images/' + image.name" />
+                <img :src="'/storage/images/' + image.name" class="h-96 w-full object-scale-down" />
             </div>
         </a>
     </Box>
