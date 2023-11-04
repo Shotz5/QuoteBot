@@ -56,19 +56,15 @@ class ImageController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $image = $request->validate([
+            "posted" => "boolean"
+        ]);
+
+        Image::where('id', $id)->update( ['posted' => $image["posted"]] );
     }
 
     /**
@@ -76,6 +72,9 @@ class ImageController extends Controller
      */
     public function destroy(string $id)
     {
-        // ToDo
+        Image::find($id)->delete();
+
+        return redirect()->route('image.index')
+            ->with('success', 'Image was deleted');
     }
 }

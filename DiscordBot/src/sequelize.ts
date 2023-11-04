@@ -1,6 +1,7 @@
-import { DataTypes, Sequelize, Model } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
+import { database } from './config.json';
 
-export const connection = new Sequelize('laravel', 'root', 'password', {
+export const connection = new Sequelize(database.db, database.username, database.password, {
     host: '127.0.0.1',
     dialect: 'mysql',
 });

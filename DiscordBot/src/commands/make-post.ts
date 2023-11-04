@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, EmbedBuilder, AttachmentBuilder } from 'discord.js';
 import { ISlashCommand } from '../utils/types';
 import { Image, Quote } from '../sequelize';
-import { storageUrl } from '../config.json';
+import { storageUrl, dev } from '../config.json';
 
 export const MakePost: ISlashCommand = {
     data: new SlashCommandBuilder()
@@ -23,12 +23,19 @@ export const MakePost: ISlashCommand = {
             return;
         }
 
-        const file = new AttachmentBuilder(storageUrl + randomImage.getDataValue("name"));
-        console.log(file);
-        const embed = new EmbedBuilder()
-            .setDescription(randomQuote.getDataValue("quote"))
-            .setImage("attachment://" + randomImage.getDataValue("name"));
+        if (dev) {
+            const file = new AttachmentBuilder(storageUrl + randomImage.getDataValue("name"));
+            const embed = new EmbedBuilder()
+                .setDescription(randomQuote.getDataValue("quote"))
+                .setImage("attachment://" + randomImage.getDataValue("name"));
 
-        await interaction.reply({ embeds: [embed], files: [file] });
+            await interaction.reply({ embeds: [embed], files: [file] });
+        } else {
+            const embed = new EmbedBuilder()
+                .setDescription(randomQuote.getDataValue("quote"))
+                .setImage(storageUrl + randomImage.getDataValue("name"));
+
+            await interaction.reply({ embeds: [embed] });
+        }
     }
 }

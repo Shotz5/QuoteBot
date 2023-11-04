@@ -3,10 +3,12 @@
         <div class="container mx-auto">
             <nav class="p-4 flex items-center justify-between">
                 <div class="text-lg font-medium">
-                    <Link :href="route('image.create')">Upload</Link>&nbsp;
+                    <Link :href="route('image.create')">Upload Image</Link>&nbsp;| 
+                    <Link :href="route('quote.create')">Upload Quote</Link>
                 </div>
                 <div class="text-lg font-medium">
-                    <Link :href="route('image.index')" class="text-xl text-gray-50 dark:text-gray-50 font-bold text-center">Upload Image to Discord Bot</Link>
+                    <Link :href="route('image.index')" class="text-xl text-gray-50 dark:text-gray-50 font-bold text-center">Images</Link>&nbsp;| 
+                    <Link :href="route('quote.index')" class="text-xl text-gray-50 dark:text-gray-50 font-bold text-center">Quotes</Link>
                 </div>
                 <div class="text-lg font-medium">
                     <Link :href="route('image.index')">Add to Server</Link>

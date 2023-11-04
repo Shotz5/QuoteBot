@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ImageController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 Route::resource('image', ImageController::class);
 

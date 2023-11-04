@@ -21,7 +21,7 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        return inertia('Quote/Upload');
+        return inertia('Quote/Create');
     }
 
     /**
@@ -29,10 +29,17 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $quote = $request->validate([
+            "quote" => 'required|string|max:2048',
+        ]);
+
+        Quote::create([
+            'quote' => $quote["quote"],
+            'posted' => 0,
+        ]);
 
         return redirect()->route('quote.create')
-            ->with('success', 'Images were uploaded');
+            ->with('success', 'Quote was uploaded');
     }
 
     /**
@@ -40,15 +47,7 @@ class QuoteController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return inertia('Quote/Show', ['quote' => Quote::find($id)]);
     }
 
     /**
@@ -56,7 +55,11 @@ class QuoteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $quote = $request->validate([
+            "posted" => "boolean"
+        ]);
+
+        Quote::where('id', $id)->update( ['posted' => $quote["posted"]] );
     }
 
     /**
@@ -64,6 +67,9 @@ class QuoteController extends Controller
      */
     public function destroy(string $id)
     {
-        // ToDo
+        Quote::find($id)->delete();
+
+        return redirect()->route('quote.index')
+            ->with('success', 'Quote was deleted');
     }
 }
