@@ -8,34 +8,21 @@ export const MakePost: ISlashCommand = {
         .setName('make-post')
         .setDescription('Post an image with a quote.'),
     async execute(interaction: ChatInputCommandInteraction<CacheType>) {
-        const randomImage = Image.build({
-            name: "zGUrDAtaW8zULPcE5A7pwmSlppCGHsT02HTtw7MO.png",
-            posted: false,
-        });
-
-        const randomQuote = Quote.build({
-            quote: "This is a cool test quote",
-            posted: false,
-        });
+        const randomImage = await Image.findOne({ where: { posted: false } });
+        const randomQuote = await Quote.findOne({ where: { posted: false } });
 
         if (!randomImage || !randomQuote) {
-            await interaction.reply("Could not find any quote or image to post");
+            await interaction.reply("Could not find any quote or image to post. Bowomp :(");
             return;
         }
 
-        if (dev) {
-            const file = new AttachmentBuilder(storageUrl + randomImage.getDataValue("name"));
-            const embed = new EmbedBuilder()
-                .setDescription(randomQuote.getDataValue("quote"))
-                .setImage("attachment://" + randomImage.getDataValue("name"));
+        const embed = new EmbedBuilder()
+            .setDescription(randomQuote.getDataValue("quote"))
+            .setImage(storageUrl + randomImage.getDataValue("name"));
 
-            await interaction.reply({ embeds: [embed], files: [file] });
-        } else {
-            const embed = new EmbedBuilder()
-                .setDescription(randomQuote.getDataValue("quote"))
-                .setImage(storageUrl + randomImage.getDataValue("name"));
+        await interaction.reply({ embeds: [embed] });
 
-            await interaction.reply({ embeds: [embed] });
-        }
+        await randomImage.update({ posted: true });
+        await randomQuote.update({ posted: true });
     }
 }

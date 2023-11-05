@@ -73,7 +73,7 @@
     });
 
     const unpostImage = () => {
-        toggleForm.posted = 1;
+        toggleForm.posted = 0;
         toggleForm.patch(route('image.update', props.image.id))
     }
 

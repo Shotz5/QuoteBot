@@ -63,7 +63,7 @@
     });
 
     const unpostQuote = () => {
-        toggleForm.posted = 1;
+        toggleForm.posted = 0;
         toggleForm.patch(route('quote.update', props.quote.id))
     }
 
