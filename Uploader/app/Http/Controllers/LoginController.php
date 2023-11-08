@@ -88,9 +88,12 @@ class LoginController extends Controller
     /**
      * Reset password page
      */
-    public function reset()
+    public function reset(Request $request)
     {
-        return inertia('Reset');
+        return inertia('Reset', [
+            'token' => $request->route('token'),
+            'email' => $request->get('email'),
+        ]);
     }
 
     /**
@@ -107,7 +110,6 @@ class LoginController extends Controller
         $status = Password::reset([
             "email" => $validated["email"],
             "password" => $validated["password"],
-            "password_confirmation" => $validated["password_confirmation"],
             "token" => $validated["token"],
         ], function (User $user, string $password) {
             $user->forceFill([
@@ -120,7 +122,7 @@ class LoginController extends Controller
         });
 
         return $status === Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
-            : back()->withErrors(["email" => [__($status)]]);
+            ? redirect()->route('login')->with("success", __($status))
+            : back()->withErrors(["password" => __($status)]);
     }
 }
