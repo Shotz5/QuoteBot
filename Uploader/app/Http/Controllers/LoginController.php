@@ -91,8 +91,8 @@ class LoginController extends Controller
     public function reset(Request $request)
     {
         return inertia('Reset', [
-            'token' => $request->route('token'),
-            'email' => $request->get('email'),
+            'token' => $request->token,
+            'email' => $request->email,
         ]);
     }
 
