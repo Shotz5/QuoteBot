@@ -3,7 +3,7 @@ import { IClient, ISlashCommand } from '../utils/types';
 import { connection, Image, Quote } from '../sequelize';
 import { storageUrl } from '../config.json';
 
-let prevInterval: number;
+export let prevInterval: number;
 let channel: TextChannel;
 let timer: number;
 
