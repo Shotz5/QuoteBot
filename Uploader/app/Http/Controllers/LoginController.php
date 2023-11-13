@@ -81,7 +81,7 @@ class LoginController extends Controller
         ]);
 
         return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => __($status)])
+            ? back()->with('success', __($status))
             : back()->withErrors(['status' => __($status)]);
     }
 
@@ -90,7 +90,7 @@ class LoginController extends Controller
      */
     public function reset(Request $request)
     {
-        return inertia('Reset', [
+	return inertia('Reset', [
             'token' => $request->token,
             'email' => $request->email,
         ]);
