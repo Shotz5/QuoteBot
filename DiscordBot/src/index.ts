@@ -2,7 +2,7 @@ import { Collection, Events, GatewayIntentBits } from 'discord.js';
 import { IClient, ISlashCommand } from './utils/types';
 import { token } from './config.json';
 import externCommands from './commands';
-import { connection, Image } from './sequelize';
+import { connection } from './sequelize';
 
 const commands = new Collection<string, ISlashCommand>();
 // Import commands from files

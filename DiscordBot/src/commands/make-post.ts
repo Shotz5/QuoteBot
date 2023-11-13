@@ -1,15 +1,15 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, EmbedBuilder, AttachmentBuilder } from 'discord.js';
+import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, EmbedBuilder } from 'discord.js';
 import { ISlashCommand } from '../utils/types';
-import { Image, Quote } from '../sequelize';
-import { storageUrl, dev } from '../config.json';
+import { Image, Quote, connection } from '../sequelize';
+import { storageUrl } from '../config.json';
 
 export const MakePost: ISlashCommand = {
     data: new SlashCommandBuilder()
         .setName('make-post')
         .setDescription('Post an image with a quote.'),
     async execute(interaction: ChatInputCommandInteraction<CacheType>) {
-        const randomImage = await Image.findOne({ where: { posted: false } });
-        const randomQuote = await Quote.findOne({ where: { posted: false } });
+        const randomImage = await Image.findOne({ where: { posted: false }, order: connection.random() });
+        const randomQuote = await Quote.findOne({ where: { posted: false }, order: connection.random() });
 
         if (!randomImage || !randomQuote) {
             await interaction.reply("Could not find any quote or image to post. Bowomp :(");
